@@ -8,3 +8,5 @@ elif x == 1:
     print("ひとつ")
 else:
     print("もっと")
+
+print("test")
