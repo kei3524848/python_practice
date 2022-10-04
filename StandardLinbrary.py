@@ -1,11 +1,17 @@
 # import shutil
 import glob
+import locale
+import logging
 import math
 import os
+import pprint
 import random
 import re
+import reprlib
 import statistics
+import textwrap
 from datetime import date
+from string import Template
 
 # from urllib.request import urlopen
 
@@ -53,3 +59,32 @@ print(now.strftime("%m-%d-%y. %d %b %Y is a %A on the %d day of %B."))
 birthday = date(1964, 7, 31)
 age = now - birthday
 print(age.days)
+
+print(reprlib.repr(set("supercalifragilisticexpialidocious")))
+
+t = [[[["black", "cyan"], "white", ["green", "red"]], [["magenta", "yellow"], "blue"]]]
+pprint.pprint(t, width=30)
+
+doc = """The wrap() method is just like fill() except that it returns a list of strings instead one big string with newlines to separate the wrapped lines."""
+print(textwrap.fill(doc, width=40))
+
+locale.setlocale(locale.LC_ALL, '')
+conv = locale.localeconv()
+x = 1234567.8
+print(locale.format("%d", x, grouping=True))
+print(locale.format_string(
+    "%s%.*f", (conv["currency_symbol"], conv["frac_digits"], x), grouping=True))
+
+
+t = Template("${village}folk send $$10 to $cause.")
+print(t.substitute(village="Nottingham", cause="the ditch fund"))
+
+st = Template("Return the $item to $owner.")
+d = dict(item="unladen swallow")
+print(st.safe_substitute(d))
+
+logging.debug("Debugging information")
+logging.info("Informational message")
+logging.warning("WArning:config file %s not found", "server.conf")
+logging.error("Error occurred")
+logging.critical("Critical erorr -- shutting down")

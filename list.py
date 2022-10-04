@@ -1,11 +1,16 @@
+import bisect
+from array import array
 from cmath import pi
-from itertools import count
+from collections import deque
+from heapq import heapify, heappop, heappush
 
+# from itertools import count
+# from math import pi
 
 squares = [1, 4, 9, 16, 25]
 print(squares)
 print(squares[0])
-print(squares[2:]) # slice
+print(squares[2:])  # slice
 print(squares + [36, 49, 64, 72, 81, 100])
 cubes = [1, 8, 27, 65, 125]
 print(cubes)
@@ -55,7 +60,7 @@ print(stack.pop())
 print(stack.pop())
 print(stack)
 
-from collections import deque
+
 queue = deque(["Eric", "Jhon", "Michael"])
 queue.append("Terry")
 queue.append("Graham")
@@ -91,7 +96,7 @@ print([weapon.strip() for weapon in freshfruit])
 print([(x, x**2) for x in range(6)])
 vec = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 print([num for elem in vec for num in elem])
-from math import pi
+
 print([str(round(pi, i)) for i in range(1, 6)])
 
 print("#" * 10)
@@ -112,3 +117,20 @@ print(a)
 del a[:]
 print(a)
 
+arr = array("H", [4000, 10, 700, 22222])
+print(sum(arr))
+print(arr[1:3])
+
+d = deque(["task1", "task2", "task3"])
+d.append("task4")
+print("Handling", d.popleft())
+
+scores = [(100, "perl"), (200, "tcl"), (400, "lua"), (500, "python")]
+bisect.insort(scores, (300, "ruby"))
+print(scores)
+
+
+data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
+heapify(data)
+heappush(data, -5)
+print([heappop(data) for i in range(3)])
